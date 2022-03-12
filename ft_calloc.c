@@ -10,15 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libf.h"
+#include "libft.h"
 
-void	*calloc(size_t count, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
 	void	*ptr;
 
 	ptr = malloc(count * size);
 	if (!ptr)
 		return (NULL);
-	ft_bzero(ptr, count);
+	ft_bzero(ptr, (count * size));
 	return (ptr);
 }
+
+/* int	main(void)
+{
+	void	*ptr;
+	int		i;
+	i = 0;
+	ptr = ft_calloc(5, sizeof(char));
+	while (i < 79)
+	{
+		printf("%d ", *(int *)ptr);
+		ptr += sizeof(char);
+		i++;
+	}
+} */

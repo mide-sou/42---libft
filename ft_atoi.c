@@ -11,8 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-//#include <stdio.h>      /* printf, fgets */
-//#include <stdlib.h>     /* atoi */
+
 
 int	ft_atoi(const char *str)
 {
@@ -23,6 +22,7 @@ int	ft_atoi(const char *str)
 	res = 0;
 	s = 1;
 	i = 0;
+	if (str )
 	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t'
 		|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
 		i++;
@@ -35,6 +35,10 @@ int	ft_atoi(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		res = (res * 10) + (str[i] - '0');
+		if (res > 2147483647)
+			return (-1);
+		if (res < -2147483648)
+			return (0);
 		i++;
 	}
 	return (res * s);
@@ -43,7 +47,7 @@ int	ft_atoi(const char *str)
 /* int main()
 {
     int val;
-    char strn1[] = "-12a546";
+    char strn1[] = "2147483648";
  
     val = ft_atoi(strn1);
     printf("String value = %s\n", strn1);
@@ -55,4 +59,5 @@ int	ft_atoi(const char *str)
     printf("Integer value = %d\n", val);
  
     return (0);
-} */
+}
+ */
