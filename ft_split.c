@@ -12,89 +12,65 @@
 
 #include "libft.h"
 
-static int	ft_numb_str(char const *s, char c)
+static size_t	count_words(char const *s, char c)
 {
-	int	i;
-	int	res;
+	size_t	i;
+	size_t	count;
 
 	i = 0;
-	res = 0;
+	count = 0;
 	while (s[i] != '\0')
 	{
-		if (s[i] == c)
-		{
-			res++;
-		}
-		i++;
+		while (s[i] == c)
+			i++;
+		if (s[i])
+			count++;
+		while (s[i] != c && s[i])
+			i++;
 	}
-	return (res + 1);
-}
-
-static int	ft_find_start(char const *str, char c, int index)
-{
-	int	i;
-
-	i = index;
-	while (str[i] != '\0' && str[i] != c)
-	{	
-		i++;
-	}
-	return (i);
-}
-
-static int	ft_find_len(char const *str, char c, int index)
-{
-	int	i;
-	int	j;
-
-	i = index;
-	j = 0;
-	while (str[i] != '\0' && str[i] != c)
-	{
-		i++;
-		j++;
-	}
-	if (str[i] == '\0')
-		return (j);
-	return (j + 1);
+	return (count);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**matrix;
-	int		i;
-	int		start;
-	int		len;
+	char	**new;
+	char	*str;
+	size_t	numstrs;
 
-	i = 0;
-	start = 0;
-	if (!s)
+	if (s == NULL)
 		return (NULL);
-	matrix = (char **)malloc(sizeof(char *) * (ft_numb_str(s, c)));
-	if (!matrix)
+	numstrs = count_words(s, c);
+	new = (char **)malloc(sizeof(char *) * (numstrs + 1));
+	if (new == NULL)
 		return (NULL);
-	while (i < ft_numb_str(s, c))
+	str = (char *)s;
+	while (*s)
 	{
-		len = ft_find_len(s, c, start);
-		matrix[i] = ft_substr(s, start, len);
-		start = ft_find_start(s, c, (start)) + 1;
-		i++;
+		if (*s == c)
+		{
+			if (str != s)
+				*(new ++) = ft_substr(str, 0, s - str);
+			str = (char *)s + 1;
+		}
+		s++;
 	}
-	matrix[i] = NULL;
-	return (matrix);
+	if (str != s)
+		*(new ++) = ft_substr(str, 0, s - str);
+	*new = 0;
+	return (new - numstrs);
 }
 
-/*int	main(void)
+/* size_t	main(void)
 {
-	char	*s = "oaboaboabco";
+	char	*s = "abababc";
 	char	**matrix;
-	int		i;
+	size_t		i;
 
 	i = 0;
-	matrix = ft_split(s, 'o');
+	matrix = ft_split(s, 'b');
 	while (matrix[i])
 	{
 		printf("%s\n", matrix[i]);
 		i++;
 	}
-}*/
+} */

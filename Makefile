@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mide-sou <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/03/14 16:05:32 by mide-sou          #+#    #+#              #
+#    Updated: 2022/03/14 16:05:50 by mide-sou         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME =  libft.a
 SRC = 	ft_isalpha    \
 		ft_isdigit    \
@@ -26,6 +38,12 @@ SRC = 	ft_isalpha    \
 		ft_strjoin    \
 		ft_strtrim    \
 		ft_itoa       \
+		ft_strmapi    \
+		ft_striteri   \
+		ft_putchar_fd \
+		ft_putstr_fd  \
+		ft_putendl_fd \
+		ft_putnbr_fd  \
 		ft_split
 
 CC = gcc
