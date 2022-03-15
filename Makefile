@@ -48,10 +48,9 @@ SRC = 	ft_isalpha    \
 
 CC = gcc
 RM = rm -f
-CFLAGS = -Wall -Werror -Wextra -I. -c
+CFLAGS = -Wall -Werror -Wextra -I.
 
 all:$(NAME)
-
 $(NAME): $(SRC:=.o)
 			ar rc $(NAME) $(SRC:=.o)
 clean:
@@ -59,5 +58,4 @@ clean:
 fclean: clean
 		$(RM)	$(NAME)
 re:	fclean	$(NAME)
-
 .PHONY: all clean fclean re
